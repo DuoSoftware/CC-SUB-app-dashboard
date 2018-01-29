@@ -1,0 +1,249 @@
+<div class="page-layout carded left-sidenav">
+    <div class="top-bg md-accent-bg h-55"></div>
+    <!-- CENTER -->
+    <div class="center layout-column m-0" layout="column" fill-height>
+        <div class="layout-align-start-start layout-column mt-10" layout="column" layout-align="start start">
+            <div class="v-header layout-column" layout="column" flex fill-width>
+                <div class="title ml-15 mb-5 layout-align-center-start layout-column" layout="column" layout-align="center start">
+                    <div class="logo layout-align-start-center layout-row" layout="row" layout-align="start center">
+                    <span class="logo-icon">
+                      <img src="app/core/app_icons/dashboard_app_icon.png" alt=""/>
+                    </span>
+                        <span class="logo-text">Dashboard</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- CONTENT -->
+        <div class="content-card flex layout-column" style="background: #EEEEEE">
+
+            <!--<div class="p-5 md-whiteframe-2dp pos-rel" style="background: rgb(250, 250, 250);z-index: 1" layout="row" layout-align-lg="end center" layout-align-md="end center" layout-align-sm="end center" layout-align-xs="start center" ng-if="isSuperAdmin != 'true'">-->
+                <!--&lt;!&ndash;<md-button ng-click="openDashboardFilters()" class="pl-10 md-accent">Filters<md-icon md-font-icon="icon-chevron-down" class="ml-5 fs-15"></md-icon></md-button>&ndash;&gt;-->
+                <!--<div class="mr-10 br" layout-md="row" layout-sm="row" layout-xs="column" flex-xs>-->
+                    <!--<span hide-xs class="fs-12 op-5">Filters: </span>-->
+                    <!--<md-input-container class="m-0 h-35 mr-20" flex-xs>-->
+                        <!--<label style="bottom: 85%">From</label>-->
+                        <!--<md-datepicker ng-model="filterFrom" ng-change="setFilterFrom(filterFrom)"></md-datepicker>-->
+                    <!--</md-input-container>-->
+                    <!--<span hide-xs>-</span>-->
+                    <!--<md-input-container class="m-0 h-35 ml-10" flex-xs>-->
+                        <!--<label style="bottom: 85%">To</label>-->
+                        <!--<md-datepicker ng-model="filterTo" ng-change="setFilterTo(filterTo)"></md-datepicker>-->
+                    <!--</md-input-container>-->
+                    <!--<md-button class="md-accent" ng-click="loadDashboard()">Apply</md-button>-->
+                <!--</div>-->
+                <!--<md-button class="md-accent md-icon-button" ng-click="loadDashboard()"><md-icon md-font-icon="icon-refresh md-accent"></md-icon><md-tooltip>Refresh</md-tooltip></md-button>-->
+            <!--</div>-->
+
+            <!--<div ng-if="dashboardFiltersOpen" class="animate-slide-down p-10 layout-row layout-align-center-center pos-abs md-whiteframe-1dp bg-white" style="top: 115px;right: 0;z-index: 0">-->
+                <!--<md-input-container class="mb-0">-->
+                    <!--<label>From</label>-->
+                    <!--<md-datepicker ng-model="" md-placeholder="From" class="mr-20"></md-datepicker>-->
+                <!--</md-input-container>-->
+                <!--<md-input-container class="mb-0">-->
+                    <!--<label>To</label>-->
+                    <!--<md-datepicker ng-model="" md-placeholder="To" class="mr-20"></md-datepicker>-->
+                <!--</md-input-container>-->
+            <!--</div>-->
+
+            <!--<iframe class="layout-column flex" layout="column" flex fill-width-->
+                    <!--frameborder='0'-->
+                    <!--id="reportFram"-->
+                    <!--marginwidth="0"-->
+                    <!--marginheight="0"-->
+                    <!--height="{{contentHeight}}"-->
+                    <!--onload=""-->
+                    <!--allowfullscreen>-->
+            <!--</iframe>-->
+
+            <div layout="row" layout-align="end center" md-whiteframe="1dp" style="background: #dddddd;z-index: 1;">
+                <span class="op-5 mr-10 font-black">Filter: </span>
+                <md-menu md-position-mode="left bottom">
+                    <md-button layout="row" layout-align="start center" class="pr-0 pl-10" ng-click="$mdMenu.open($event)">{{filterSimple}} <i class="material-icons ml-5">keyboard_arrow_down</i></md-button>
+                    <md-menu-content width="4">
+                        <md-menu-item>
+                            <md-button ng-click="updateSimpleFilter('Today')"><i class="material-icons op-5">sort</i> Today</md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button ng-click="updateSimpleFilter('This month')"><i class="material-icons op-5">sort</i> This month</md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button ng-click="updateSimpleFilter('This year')"><i class="material-icons op-5">sort</i> This year</md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+
+                <md-button class="md-icon-button" ng-click="updateSimpleFilter('This month')"><md-icon md-font-icon="icon-refresh"></md-icon><md-tooltip>Refresh</md-tooltip></md-button>
+            </div>
+
+            <md-content ms-scroll class="dashboard-responsive" flex>
+
+                <div class="datacounts-wrap" layout-lg="row" layout-md="row" layout-sm="column" layout-xs="column" layout-align="center center">
+                    <div layout-lg="row" layout-md="row" layout-sm="row" layout-xs="column" layout-align="center center" ng-repeat="(key, value) in categoryDashboards | groupBy:'row'" flex style="width: 100%">
+
+                        <!--<div class="datacount-block block-{{dash.icon}}" ng-repeat="dash in value" flex layout="row" layout-align="center center">-->
+                            <!--<div class="icon-portion">-->
+                                <!--<img hide-sm src="assets/icons/{{dash.icon}}.svg" alt="">-->
+                            <!--</div>-->
+                            <!--<div class="data-portion" flex>-->
+                                <!--<div class="title">{{dash.title}}</div>-->
+                                <!--<div class="value" ng-if="dash.title == 'Total invoiced' || dash.title == 'Total received'">{{dash.value | isoCurrency:currency:0}}</div>-->
+                                <!--<div class="value" ng-if="dash.title != 'Total invoiced' && dash.title != 'Total received'">{{dash.value}}</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+
+                        <div class="datacount-block block-{{dash.icon}}" ng-repeat="dash in value" flex>
+                            <div class="data-portion" flex fill-width>
+                                <div class="value" ng-if="dash.title == 'Total invoiced' || dash.title == 'Total received'">{{dash.value | isoCurrency:currency}}</div>
+                                <div class="value" ng-if="dash.title != 'Total invoiced' && dash.title != 'Total received'">{{dash.value}}</div>
+                            </div>
+                            <div class="iconn-portion" layout="row" layout-align="start center">
+                                <img hide-sm src="assets/icons/{{dash.icon}}.svg" alt="">
+                                <div class="title" flex>{{dash.title}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="graphs-wrap">
+                    <!--<div class="datacounts-wrap" layout-lg="row" layout-md="row" layout-sm="column" layout-xs="column" layout-align="center start">-->
+                        <!--<div class="datacount-block" layout="column" flex="60">-->
+                            <!--<div class="block-title"><span class="t-0">Sales summary</span></div>-->
+                            <!--<div layout-lg="row" layout-sm="column" layout-align="center center" flex-lg flex-md style="height: 100%">-->
+                                <!--<iframe layout="column" layout-align="center start" fill-height-->
+                                        <!--frameborder='0'-->
+                                        <!--id="RevenueByInvoice"-->
+                                        <!--marginwidth="0"-->
+                                        <!--marginheight="0"-->
+                                        <!--onload=""-->
+                                        <!--allowfullscreen style="width: 520px;margin-right: -10px">-->
+                                <!--</iframe>-->
+                                <!--<div layout="column" layout-align="center start" flex class="p-20 bg-white" fill-height>-->
+                                    <!--<div class="inner-number-block" flex>-->
+                                        <!--<div>{{dailyInverted.text}}</div>-->
+                                        <!--<div>{{dailyInverted.amount|isoCurrency:currency:0}}</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="inner-number-block" flex>-->
+                                        <!--<div>{{monthlyInverted.text}}</div>-->
+                                        <!--<div>{{monthlyInverted.amount|isoCurrency:currency:0}}</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="inner-number-block" flex>-->
+                                        <!--<div>This year sales</div>-->
+                                        <!--<div>{{yearlySalesExtra|isoCurrency:currency:0}}</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="datacount-block" flex>-->
+                            <!--<div class="block-title"><span class="t-1">Subscription summary</span></div>-->
+                            <!--<iframe class="layout-column flex" layout="column" flex fill-width fill-height-->
+                                    <!--frameborder='0'-->
+                                    <!--id="ActivationSummary"-->
+                                    <!--marginwidth="0"-->
+                                    <!--marginheight="0"-->
+                                    <!--height="{{contentHeight}}"-->
+                                    <!--onload=""-->
+                                    <!--allowfullscreen>-->
+                            <!--</iframe>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <div class="datacounts-wrap" layout-lg="row" layout-md="column" layout-sm="column" layout-xs="column">
+                        <div layout-lg="column" layout-md="row" layout-sm="row" layout-xs="column" layout-align="center start" flex-lg="20" flex-md flex-sm flex-xs class="datacount-block block-inset p-20 bg-white">
+                            <div class="inner-number-block" flex fill-width>
+                                <div>{{dailyInverted.text}}</div>
+                                <div class="text-center">{{dailyInverted.amount|isoCurrency:currency}}</div>
+                            </div>
+                            <div class="inner-number-block" flex fill-width>
+                                <div>{{monthlyInverted.text}}</div>
+                                <div class="text-center">{{monthlyInverted.amount|isoCurrency:currency}}</div>
+                            </div>
+                            <div class="inner-number-block" flex fill-width>
+                                <div>This year sales</div>
+                                <div class="text-center">{{yearlySalesExtra|isoCurrency:currency}}</div>
+                            </div>
+                        </div>
+
+                        <div layout-lg="row" layout-md="row" layout-sm="column" layout-xs="column" layout-align="start center" flex>
+                            <div class="datacount-block" flex>
+                                <div class="block-title"><span class="t-0">Sales summary</span></div>
+                                <iframe layout="column" flex fill-width fill-height
+                                        frameborder='0'
+                                        id="RevenueByInvoice"
+                                        marginwidth="0"
+                                        marginheight="0"
+                                        height="{{contentHeight}}"
+                                        onload=""
+                                        allowfullscreen>
+                                </iframe>
+                            </div>
+                            <div class="datacount-block" flex>
+                                <div class="block-title"><span class="t-1">Subscription summary</span></div>
+                                <iframe layout="column" flex fill-width fill-height
+                                        frameborder='0'
+                                        id="ActivationSummary"
+                                        marginwidth="0"
+                                        marginheight="0"
+                                        height="{{contentHeight}}"
+                                        onload=""
+                                        allowfullscreen>
+                                </iframe>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="datacounts-wrap" layout-lg="row" layout-md="row" layout-sm="column" layout-xs="column" layout-align="center start">
+                        <div class="datacount-block" flex>
+                            <div class="block-title"><span class="t-2">Revenue by Customers</span></div>
+                            <iframe layout="column" flex fill-width fill-height
+                                    frameborder='0'
+                                    id="revenurByCustomers"
+                                    marginwidth="0"
+                                    marginheight="0"
+                                    height="{{contentHeight}}"
+                                    onload=""
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="datacount-block" flex>
+                            <div class="block-title"><span class="t-3">Profiles by Country</span></div>
+                            <div class="p-10">
+                                <nvd3 options="options" data="profileByCountry" style="height: auto"></nvd3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--<div class="datacounts-wrap" layout-lg="row" layout-md="row" layout-sm="column" layout-xs="column" layout-align="center start">-->
+                        <!--<div class="datacount-block" fill-width flex>-->
+                            <!--<div class="ph-15 pv-10"><h2 class="m-0">Receipts Revenue by Year</h2></div>-->
+                            <!--<iframe class="layout-column flex" layout="column" flex fill-width-->
+                                    <!--frameborder='0'-->
+                                    <!--id="ReceiptsRevenueYear"-->
+                                    <!--marginwidth="0"-->
+                                    <!--marginheight="0"-->
+                                    <!--height="{{contentHeight}}"-->
+                                    <!--onload=""-->
+                                    <!--allowfullscreen>-->
+                            <!--</iframe>-->
+                        <!--</div>-->
+                        <!--<div class="datacount-block" fill-width flex>-->
+                            <!--<div class="ph-15 pv-10"><h2 class="m-0">Invoice Revenue by Year</h2></div>-->
+                            <!--<iframe class="layout-column flex" layout="column" flex fill-width-->
+                                    <!--frameborder='0'-->
+                                    <!--id="invoiceRevenueYear"-->
+                                    <!--marginwidth="0"-->
+                                    <!--marginheight="0"-->
+                                    <!--height="{{contentHeight}}"-->
+                                    <!--onload=""-->
+                                    <!--allowfullscreen>-->
+                            <!--</iframe>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                </div>
+
+            </md-content>
+
+        </div>
+        <!-- / CONTENT -->
+    </div>
+</div>
