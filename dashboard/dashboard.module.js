@@ -1,8 +1,8 @@
 ////////////////////////////////
 // App : Dashboard
 // Owner  : Suvethan
-// Last changed date : 2017/11/14
-// Version : 6.1.0.5
+// Last changed date : 2018/02/12
+// Version : 6.1.0.6
 // Updated BY: Kasun
 /////////////////////////////////
 (function ()

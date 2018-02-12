@@ -2,10 +2,10 @@
     <div class="top-bg md-accent-bg h-55"></div>
     <!-- CENTER -->
     <div class="center layout-column m-0" layout="column" fill-height>
-        <div class="layout-align-start-start layout-column mt-10" layout="column" layout-align="start start">
+        <div class="mt-10" layout="column" layout-align="start start" ng-if="!themeDuoworld">
             <div class="v-header layout-column" layout="column" flex fill-width>
-                <div class="title ml-15 mb-5 layout-align-center-start layout-column" layout="column" layout-align="center start">
-                    <div class="logo layout-align-start-center layout-row" layout="row" layout-align="start center">
+                <div class="title ml-15 mb-5" layout="column" layout-align="center start">
+                    <div class="logo" layout="row" layout-align="start center">
                     <span class="logo-icon">
                       <img src="app/core/app_icons/dashboard_app_icon.png" alt=""/>
                     </span>
@@ -15,7 +15,7 @@
             </div>
         </div>
         <!-- CONTENT -->
-        <div class="content-card flex layout-column" style="background: #EEEEEE">
+        <div class="content-card flex layout-column mt-0 bg-gray">
 
             <!--<div class="p-5 md-whiteframe-2dp pos-rel" style="background: rgb(250, 250, 250);z-index: 1" layout="row" layout-align-lg="end center" layout-align-md="end center" layout-align-sm="end center" layout-align-xs="start center" ng-if="isSuperAdmin != 'true'">-->
                 <!--&lt;!&ndash;<md-button ng-click="openDashboardFilters()" class="pl-10 md-accent">Filters<md-icon md-font-icon="icon-chevron-down" class="ml-5 fs-15"></md-icon></md-button>&ndash;&gt;-->
@@ -56,27 +56,38 @@
                     <!--allowfullscreen>-->
             <!--</iframe>-->
 
-            <div layout="row" layout-align="end center" md-whiteframe="1dp" style="background: #dddddd;z-index: 1;">
-                <span class="op-5 mr-10 font-black">Filter: </span>
-                <md-menu md-position-mode="left bottom">
-                    <md-button layout="row" layout-align="start center" class="pr-0 pl-10" ng-click="$mdMenu.open($event)">{{filterSimple}} <i class="material-icons ml-5">keyboard_arrow_down</i></md-button>
-                    <md-menu-content width="4">
-                        <md-menu-item>
-                            <md-button ng-click="updateSimpleFilter('Today')"><i class="material-icons op-5">sort</i> Today</md-button>
-                        </md-menu-item>
-                        <md-menu-item>
-                            <md-button ng-click="updateSimpleFilter('This month')"><i class="material-icons op-5">sort</i> This month</md-button>
-                        </md-menu-item>
-                        <md-menu-item>
-                            <md-button ng-click="updateSimpleFilter('This year')"><i class="material-icons op-5">sort</i> This year</md-button>
-                        </md-menu-item>
-                    </md-menu-content>
-                </md-menu>
-
-                <md-button class="md-icon-button" ng-click="updateSimpleFilter('This month')"><md-icon md-font-icon="icon-refresh"></md-icon><md-tooltip>Refresh</md-tooltip></md-button>
-            </div>
-
             <md-content ms-scroll class="dashboard-responsive" flex>
+                <div layout="row" layout-align="start center" style="background: #eee;z-index: 1;">
+                    <div class="v-header layout-column" layout="column" flex ng-if="themeDuoworld">
+                        <div class="title ml-15 mb-5" layout="column" layout-align="center start">
+                            <div class="logo" layout="row" layout-align="start center">
+                    <span class="logo-icon">
+                      <img src="app/core/app_icons/dashboard_app_icon_black.png" alt=""/>
+                    </span>
+                                <span class="logo-text">Dashboard</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div layout="row" layout-align="start center">
+                        <span class="op-5 mr-10 font-black">Filter: </span>
+                        <md-menu md-position-mode="left bottom">
+                            <md-button layout="row" layout-align="start center" class="pr-0 pl-10" ng-click="$mdMenu.open($event)">{{filterSimple}} <i class="material-icons ml-5">keyboard_arrow_down</i></md-button>
+                            <md-menu-content width="4">
+                                <md-menu-item>
+                                    <md-button ng-click="updateSimpleFilter('Today')"><i class="material-icons op-5">sort</i> Today</md-button>
+                                </md-menu-item>
+                                <md-menu-item>
+                                    <md-button ng-click="updateSimpleFilter('This month')"><i class="material-icons op-5">sort</i> This month</md-button>
+                                </md-menu-item>
+                                <md-menu-item>
+                                    <md-button ng-click="updateSimpleFilter('This year')"><i class="material-icons op-5">sort</i> This year</md-button>
+                                </md-menu-item>
+                            </md-menu-content>
+                        </md-menu>
+
+                        <md-button class="md-icon-button" ng-click="updateSimpleFilter('This month')"><md-icon md-font-icon="icon-refresh"></md-icon><md-tooltip>Refresh</md-tooltip></md-button>
+                    </div>
+                </div>
 
                 <div class="datacounts-wrap" layout-lg="row" layout-md="row" layout-sm="column" layout-xs="column" layout-align="center center">
                     <div layout-lg="row" layout-md="row" layout-sm="row" layout-xs="column" layout-align="center center" ng-repeat="(key, value) in categoryDashboards | groupBy:'row'" flex style="width: 100%">
@@ -148,7 +159,7 @@
                         <!--</div>-->
                     <!--</div>-->
                     <div class="datacounts-wrap" layout-lg="row" layout-md="column" layout-sm="column" layout-xs="column">
-                        <div layout-lg="column" layout-md="row" layout-sm="row" layout-xs="column" layout-align="center start" flex-lg="20" flex-md flex-sm flex-xs class="datacount-block block-inset p-20 bg-white">
+                        <div layout-lg="column" layout-md="row" layout-sm="row" layout-xs="column" layout-align="center start" flex-lg="20" flex-md flex-sm flex-xs class="datacount-block block-inset pv-10 ph-15 bg-white">
                             <div class="inner-number-block" flex fill-width>
                                 <div>{{dailyInverted.text}}</div>
                                 <div class="text-center">{{dailyInverted.amount|isoCurrency:currency}}</div>
