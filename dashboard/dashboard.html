@@ -105,7 +105,8 @@
                                 <div class="value" ng-if="dash.title != 'Total invoiced' && dash.title != 'Total received'">{{dash.value}}</div>
                             </div>
                             <div class="iconn-portion" layout="row" layout-align="start center">
-                                <img hide-sm src="assets/icons/{{dash.icon}}.svg" alt="">
+                                <!--<img hide-sm src="assets/icons/{{dash.icon}}.svg" alt="">-->
+                              <span class="datacount-icon icon-{{dash.icon}}"></span>
                                 <div class="title" flex>{{dash.title}}</div>
                             </div>
                         </div>
