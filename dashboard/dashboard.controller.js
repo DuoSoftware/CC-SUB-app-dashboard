@@ -253,7 +253,7 @@
 				row:"1"
 			},
 			{
-				title: 'Total customers',
+				title: 'Total profiles',
 				value: 0,
 				icon:'total_failed',
 				row:"1"
