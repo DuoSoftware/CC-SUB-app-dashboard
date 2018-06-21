@@ -136,7 +136,10 @@
                         <div class="datacount-block" flex style="pointer-events: all">
                             <div class="block-title">
                                 <span class="t-3">Profiles by Country</span>
-                            </div><p style="position: absolute;z-index: 1;right: 30px;top: 30px;font-size: 12px">Users with no country added : <b>{{alienUses}}</b></p>
+                            </div>
+<p ng-if="alienUses > 0" style="position: absolute;z-index: 1;right: 30px;top: 30px;font-size: 12px">Users with no country added :
+  <b>{{alienUses}}</b>
+</p>
                             <div class="p-10" id="HCContainer">
                                 <!-- <nvd3 options="options" data="profileByCountry" style="height: auto"></nvd3> -->
 
