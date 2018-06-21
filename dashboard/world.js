@@ -2,8 +2,6 @@
  Highcharts JS v6.1.0 (2018-04-13)
 
  (c) 2009-2016 Torstein Honsi
-
- License: www.highcharts.com/license
 */
 (function(T,K){"object"===typeof module&&module.exports?module.exports=T.document?K(T):K:T.Highcharts=K(T)})("undefined"!==typeof window?window:this,function(T){var K=function(){var a="undefined"===typeof T?window:T,C=a.document,F=a.navigator&&a.navigator.userAgent||"",D=C&&C.createElementNS&&!!C.createElementNS("http://www.w3.org/2000/svg","svg").createSVGRect,r=/(edge|msie|trident)/i.test(F)&&!a.opera,g=-1!==F.indexOf("Firefox"),e=-1!==F.indexOf("Chrome"),t=g&&4>parseInt(F.split("Firefox/")[1],
 10);return a.Highcharts?a.Highcharts.error(16,!0):{product:"Highcharts",version:"6.1.0",deg2rad:2*Math.PI/360,doc:C,hasBidiBug:t,hasTouch:C&&void 0!==C.documentElement.ontouchstart,isMS:r,isWebKit:-1!==F.indexOf("AppleWebKit"),isFirefox:g,isChrome:e,isSafari:!e&&-1!==F.indexOf("Safari"),isTouchDevice:/(Mobile|Android|Windows Phone)/.test(F),SVG_NS:"http://www.w3.org/2000/svg",chartCount:0,seriesTypes:{},symbolSizes:{},svg:D,win:a,marginNames:["plotTop","marginRight","marginBottom","plotLeft"],noop:function(){},
